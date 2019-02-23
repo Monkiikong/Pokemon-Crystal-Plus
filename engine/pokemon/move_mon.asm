@@ -167,7 +167,7 @@ endr
 
 	; Initialize stat experience.
 	xor a
-	ld b, MON_DVS - MON_STAT_EXP
+	ld b, MON_DVS - MON_EVS
 .loop
 	ld [de], a
 	inc de
@@ -256,7 +256,7 @@ endr
 	inc de
 
 	; Initialize HP.
-	ld bc, MON_STAT_EXP - 1
+	ld bc, MON_EVS - 1
 	add hl, bc
 	ld a, 1
 	ld c, a
@@ -339,7 +339,7 @@ endr
 
 .generatestats
 	pop hl
-	ld bc, MON_STAT_EXP - 1
+	ld bc, MON_EVS - 1
 	add hl, bc
 	ld b, FALSE
 	call CalcMonStats
@@ -655,7 +655,7 @@ SendGetMonIntoFromBox:
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, MON_STAT_EXP - 1
+	ld hl, MON_EVS - 1
 	add hl, bc
 
 	push bc
@@ -1384,7 +1384,7 @@ ComputeNPCTrademonStats:
 	ld d, h
 	ld e, l
 	push de
-	ld a, MON_STAT_EXP - 1
+	ld a, MON_EVS - 1
 	call GetPartyParamLocation
 	ld b, TRUE
 	call CalcMonStats
