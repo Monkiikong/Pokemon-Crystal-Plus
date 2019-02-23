@@ -1242,7 +1242,7 @@ StatStrings:
 .sp_def  db "SPCL.DEF@"
 
 
-GetStatExpRelativePointer:
+GetEVRelativePointer:
 	ld a, [wCurItem]
 	ld hl, Table_eeeb
 .next
