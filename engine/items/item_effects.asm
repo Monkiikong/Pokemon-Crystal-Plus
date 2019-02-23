@@ -1183,7 +1183,7 @@ VitaminEffect:
 
 	ld hl, StatStrings
 	add hl, bc
-	add h1, bc
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
