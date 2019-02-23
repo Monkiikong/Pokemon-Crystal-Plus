@@ -21,6 +21,46 @@ NewBarkTown_MapScripts:
 	setflag ENGINE_FLYPOINT_NEW_BARK
 	clearevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	return
+	
+SetPartyMon1MaxEVsScript:
+    callasm SetPartyMon1MaxEVsAsm
+    end
+SetPartyMon1MaxEVsAsm:
+    ld a, 252
+    ld [wPartyMon1HPEV], a 
+    ld [wPartyMon1AtkEV], a
+    ld a, 6
+    ld [wPartyMon1DefEV], a
+    ret
+
+CheckPartyMon1EVsTotalScript:
+    callasm CheckPartyMon1EVsTotalAsm
+    end
+CheckPartyMon1EVsTotalAsm:
+    ld hl, wPartyMon1EVs
+    ;get total EVS
+    ld d, 6 ;six EVs
+.ev_total_loop
+    ld a, [hli]
+    ;add a to bc
+    add c
+    ld c, a
+    adc b
+    sub c
+    ld b, a
+    cp %00000001
+    jr nz, .nope ;don't add anymore evs if greater than the const for max which is set to 510
+    ld a, c
+    cp %11111110
+    jr nc, .evs_done
+.nope
+    dec d
+    jr nz, .ev_total_loop
+    ret
+.evs_done
+    ld de, SFX_SING
+    call PlaySFX
+    ret
 
 NewBarkTown_TeacherStopsYouScene1:
 	playmusic MUSIC_MOM
@@ -298,7 +338,10 @@ NewBarkTown_MapEvents:
 	bg_event  3,  3, BGEVENT_READ, NewBarkTownElmsLabSign
 	bg_event  9, 13, BGEVENT_READ, NewBarkTownElmsHouseSign
 
-	db 3 ; object events
+	db 5 ; object events
 	object_event  6,  8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
 	object_event 12,  9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
 	object_event  3,  2, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownSilverScript, EVENT_RIVAL_NEW_BARK_TOWN
+	object_event  7,  8, SPRITE_SILVER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SetPartyMon1MaxEVsScript, -1
+	object_event 10,  8, SPRITE_ELM, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CheckPartyMon1EVsTotalScript, -1
+	
