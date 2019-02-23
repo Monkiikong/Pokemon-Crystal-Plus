@@ -7021,52 +7021,71 @@ GiveExperiencePoints:
 
 ; Give EVs
 ; e = 0 for no Pokerus, 1 for Pokerus
-	ld e, 0
-	ld hl, MON_PKRUS
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .no_pokerus
-	inc e
+    ld e, 0
+    ld hl, MON_PKRUS
+    add hl, bc
+    ld a, [hl]
+    and a
+    jr z, .no_pokerus
+    inc e
 .no_pokerus
-	ld hl, MON_EVS
-	add hl, bc
-	push bc
-	ld a, [wEnemyMonSpecies]
-	ld [wCurSpecies], a
-	call GetBaseData
+    ld hl, MON_EVS
+    add hl, bc
+    push bc
+    
+;get total EVS
+    ld d, 6 ;six EVs
+.ev_total_loop
+    ld a, [hli]
+    ;add a to bc
+    add c
+    ld c, a
+    adc b
+    sub c
+    ld b, a
+    cp MAX_EVS_TOTAL - $ff
+    jr nc, .evs_done ;don't add anymore evs if greater than the const for max which is set to 510
+    dec d
+    jr nz, .ev_total_loop
+    ;after totaling all 6 evs if it not too much then go on to add more
+
+    ld a, [wEnemyMonSpecies]
+    ld [wCurSpecies], a
+    ld hl, wEnemyMonDVs
+    call GetBaseData
+    ld hl, MON_EVS
 ; EV yield format: %hhaaddss %ttff0000
 ; h = hp, a = atk, d = def, s = spd
 ; t = sat, f = sdf, 0 = unused bits
-	ld a, [wBaseHPAtkDefSpdEVs]
-	ld b, a
-	ld c, 6 ; six EVs
+    ld a, [wBaseHPAtkDefSpdEVs]
+    ld b, a
+    ld c, 6 ; six EVs
 .ev_loop
-	rlc b
-	rlc b
-	ld a, b
-	and %11
-	bit 0, e
-	jr z, .no_pokerus_boost
-	add a
+    rlc b
+    rlc b
+    ld a, b
+    and %11
+    bit 0, e
+    jr z, .no_pokerus_boost
+    add a
 .no_pokerus_boost
-	add [hl]
-	jr c, .ev_overflow
-	cp MAX_EV + 1
-	jr c, .got_ev
+    add [hl]
+    jr c, .ev_overflow
+    cp MAX_EV + 1
+    jr c, .got_ev
 .ev_overflow
-	ld a, MAX_EV
+    ld a, MAX_EV
 .got_ev
-	ld [hli], a
-	dec c
-	jr z, .evs_done
-; Use the second byte for Sp.Atk and Sp.Def
-	ld a, c
-	cp 2 ; two stats left, Sp.Atk and Sp.Def
-	jr nz, .ev_loop
-	ld a, [wBaseSpAtkSpDefEVs]
-	ld b, a
-	jr .ev_loop
+    ld [hli], a
+    dec c
+    jr z, .evs_done
+; Use the second byte for Sp. Atk and Sp. Def
+    ld a, c
+    cp 2 ; two stats left, Sp. Atk and Sp. Def
+    jr nz, .ev_loop
+    ld a, [wBaseSpAtkSpDefEVs]
+    ld b, a
+    jr .ev_loop
 .evs_done
 	pop bc
 	ld hl, MON_LEVEL
