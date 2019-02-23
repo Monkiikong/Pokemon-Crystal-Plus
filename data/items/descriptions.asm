@@ -136,7 +136,7 @@ ItemDescriptions:
 	dw PassDesc
 	dw TeruSama9Desc
 	dw TeruSama10Desc
-	dw TeruSama11Desc
+	dw ZincDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
@@ -784,8 +784,9 @@ TeruSama9Desc:
 TeruSama10Desc:
 	db   "?@"
 
-TeruSama11Desc:
-	db   "?@"
+ZincDesc:
+	db   "Raised SPCL.ATK"
+	next "of one #MON.@"
 
 CharcoalDesc:
 	db   "Powers up fire-"

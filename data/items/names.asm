@@ -136,7 +136,7 @@ ItemNames::
 	db "TERU-SAMA@"
 	db "TERU-SAMA@"
 	db "TERU-SAMA@"
-	db "CHARCOAL@"
+	db "ZINC@"
 	db "BERRY JUICE@"
 	db "SCOPE LENS@"
 	db "TERU-SAMA@"

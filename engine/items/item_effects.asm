@@ -149,7 +149,7 @@ ItemEffects:
 	dw NoEffect            ; PASS
 	dw NoEffect            ; ITEM_87
 	dw NoEffect            ; ITEM_88
-	dw NoEffect            ; ITEM_89
+	dw VitaminEffect       ; ZINC
 	dw NoEffect            ; CHARCOAL
 	dw RestoreHPEffect     ; BERRY_JUICE
 	dw NoEffect            ; SCOPE_LENS
@@ -1232,12 +1232,15 @@ StatStrings:
 	dw .defense
 	dw .speed
 	dw .sp_atk
+	dw .sp_def
 
 .health  db "HEALTH@"
 .attack  db "ATTACK@"
 .defense db "DEFENSE@"
 .speed   db "SPEED@"
-.special db "SPCL.ATK@"
+.sp_atk  db "SPCL.ATK@"
+.sp_def  db "SPCL.DEF@"
+
 
 GetStatExpRelativePointer:
 	ld a, [wCurItem]
@@ -1261,6 +1264,7 @@ Table_eeeb:
 	db IRON,    MON_DEF_EV - MON_EVS
 	db CARBOS,  MON_SPD_EV - MON_EVS
 	db CALCIUM, MON_SAT_EV - MON_EVS
+	db ZINC,	MON_SDF_EV - MON_EVS
 
 RareCandy_StatBooster_GetParameters:
 	ld a, [wCurPartySpecies]
