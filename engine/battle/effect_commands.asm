@@ -505,7 +505,7 @@ CheckEnemyTurn:
 	ld hl, HurtItselfText
 	call StdBattleTextBox
 	call HitSelfInConfusion
-	call BattleCommand_DamageCalc
+	call ConfusionDamageCalc
 	call BattleCommand_LowerSub
 	xor a
 	ld [wNumHits], a
@@ -607,7 +607,7 @@ HitConfusion:
 	ld [wCriticalHit], a
 
 	call HitSelfInConfusion
-	call BattleCommand_DamageCalc
+	call ConfusionDamageCalc
 	call BattleCommand_LowerSub
 
 	xor a
@@ -2952,6 +2952,8 @@ HitSelfInConfusion:
 	ld d, 40
 	pop af
 	ld e, a
+	ld a, TRUE
+	ldh [hIsConfusionDamage], a
 	ret
 
 BattleCommand_DamageCalc:
@@ -2987,6 +2989,11 @@ BattleCommand_DamageCalc:
 	ret z
 
 .skip_zero_damage_check
+	xor a ; Not confusion damage
+	ldh [hIsConfusionDamage], a
+	; fallthrough
+
+ConfusionDamageCalc:
 ; Minimum defense value is 1.
 	ld a, c
 	and a
@@ -3041,6 +3048,12 @@ BattleCommand_DamageCalc:
 	call Divide
 
 ; Item boosts
+
+; Item boosts don't apply to confusion damage
+	ldh a, [hIsConfusionDamage]
+	and a
+	jr nz, .DoneItem
+
 	call GetUserItem
 
 	ld a, b
