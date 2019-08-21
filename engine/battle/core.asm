@@ -4197,12 +4197,11 @@ PursuitSwitch:
 	ld [wCryTracks], a
 	ld a, [wBattleMonSpecies]
 	call PlayStereoCry
-	ld a, [wLastPlayerMon]
 	ld a, [wCurBattleMon]
 	push af
 	ld a, [wLastPlayerMon]
 	ld [wCurBattleMon], a
-	call UpdateFaintedPlayerMon
+	call PlayerMonFaintHappinessMod
 	pop af
 	ld [wCurBattleMon], a
 	call PlayerMonFaintedAnimation

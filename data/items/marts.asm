@@ -124,13 +124,14 @@ MartGoldenrod3F:
 	db -1 ; end
 	
 MartGoldenrod3F2:
-	db 6 ; # items
+	db 7 ; # items
 	db FIRE_STONE
 	db THUNDERSTONE
 	db WATER_STONE
 	db LEAF_STONE
 	db MOON_STONE
 	db SUN_STONE
+	db METAL_COAT
 	db -1 ; end
 
 MartGoldenrod4F:
@@ -291,7 +292,7 @@ MartCeladon2F1:
 	db -1 ; end
 
 MartCeladon2F2:
-	db 10 ; # items
+	db 11 ; # items
 	db POKE_BALL
 	db GREAT_BALL
 	db ULTRA_BALL
@@ -342,7 +343,7 @@ MartCeladon5F2:
 	db -1 ; end
 	
 MartCeladon6F:
-	db 3 ; # items
+	db 4 ; # items
 	db TM_THUNDER
 	db TM_FIRE_BLAST
 	db TM_BLIZZARD
