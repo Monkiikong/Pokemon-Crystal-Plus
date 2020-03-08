@@ -10,6 +10,20 @@ RepelWoreOffScript::
 	text_far UnknownText_0x1bd308
 	text_end
 
+UseAnotherRepelScript::
+	opentext
+	writetext .text
+	yesorno
+	iffalse .done
+	callasm DoItemEffect
+.done
+	closetext
+	end
+
+.text:
+	text_far _UseAnotherRepelText
+	text_end
+	
 HiddenItemScript::
 	opentext
 	copybytetovar wEngineBuffer3
