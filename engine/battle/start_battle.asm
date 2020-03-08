@@ -47,6 +47,12 @@ PlayBattleMusic:
 	jp z, .done
 	cp BATTLETYPE_ROAMING
 	jp z, .done
+	
+	; Are we fighting Lugia?
+	ld a, [wBattleType]
+	cp BATTLETYPE_LUGIA
+	ld de, MUSIC_LUGIA_BATTLE
+	jp z, .done
 
 	; Are we fighting a trainer?
 	ld a, [wOtherTrainerClass]
