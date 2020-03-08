@@ -441,7 +441,15 @@ SpecialMapMusic::
 	ret
 
 .surf
+	ld a, [wMapNumber]
+	cp MAP_WHIRL_ISLAND_LUGIA_CHAMBER
+	jr z, .NoSurfMusic
 	ld de, MUSIC_SURF
+	scf
+	ret
+
+.NoSurfMusic
+	ld de, MUSIC_NONE
 	scf
 	ret
 
