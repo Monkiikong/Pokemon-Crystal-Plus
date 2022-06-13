@@ -276,7 +276,8 @@ GoldenrodDeptStore6FDirectoryText:
 	text "Decorate your"
 	line "life!"
 
-	para "6F DECORATION STATION"
+	para "6F DECORATION"
+	line "STATION"
 	done
 
 GoldenrodDeptStore6F_MapEvents:
