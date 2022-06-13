@@ -64,16 +64,16 @@ RuinsOfAlphResearchCenterScientist3Script:
 	ifequal NUM_UNOWN, .PrinterAvailable
 	writetext RuinsOfAlphResearchCenterScientist3Text
 	waitbutton
-	writetext UnownDoll
-	waitbutton
 	closetext
-	setevent EVENT_DECO_UNOWN_DOLL
 	end
 
 .PrinterAvailable:
 	writetext RuinsOfAlphResearchCenterScientist3_PrinterAvailable
 	waitbutton
+	writetext UnownDoll
+	waitbutton
 	closetext
+	setevent EVENT_DECO_UNOWN_DOLL
 	end
 
 RuinsOfAlphResearchCenterScientist1Script:
