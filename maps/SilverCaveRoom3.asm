@@ -23,6 +23,7 @@ Red:
 	writetext .Text3
 	waitbutton
 	giveitem GS_BALL
+	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	writetext .Text4
 	playsound SFX_ITEM
 	waitsfx
@@ -61,10 +62,10 @@ Red:
 	done
 	
 .Text5
-	text "I heard from Kurt"
-	line "the GS BALL has a"
+	text "I heard rumors"
+	line "that the GS BALL has"
 	
-	para "connection with"
+	para "a connection with"
 	line "Ilex Forest"
 	done
 
