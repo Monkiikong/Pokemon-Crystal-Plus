@@ -483,7 +483,11 @@ KRIS EQU __enum__
 	const PARRY3
 	const ANTHONY4
 	const ANTHONY5
-
+	const YOSHI
+	const LAO
+	const NOB
+	const LUNG
+	
 	trainerclass BIKER ; 2d
 	const BIKER_BENNY
 	const KAZU
@@ -523,12 +527,8 @@ KRIS EQU __enum__
 
 	trainerclass BLACKBELT_T ; 32
 	const KENJI1
-	const YOSHI
 	const KENJI2
-	const LAO
-	const NOB
 	const KIYO
-	const LUNG
 	const KENJI3
 	const WAI
 
