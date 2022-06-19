@@ -57,17 +57,17 @@ CianwoodGymGuyText:
 	line "vice: the GYM"
 
 	para "LEADER uses the"
-	line "fighting-type."
+	line "ground-type."
 
 	para "So you should"
-	line "confound him with"
-	cont "psychic #MON."
+	line "overwhelm him with"
+	cont "grass #MON."
 
 	para "Wipe out his #-"
 	line "MON before they"
 
 	para "can use their"
-	line "physical strength."
+	line "brutal strength."
 
 	para "And those boulders"
 	line "in the middle of"
