@@ -58,7 +58,7 @@ CianwoodGymChuckScript:
 	setevent EVENT_BEAT_BLACKBELT_LUNG
 	writetext ChuckExplainBadgeText
 	buttonsound
-	verbosegiveitem TM_DYNAMICPUNCH
+	verbosegiveitem TM_EARTHQUAKE
 	iffalse .BagFull
 	setevent EVENT_GOT_TM01_DYNAMICPUNCH
 	writetext ChuckExplainTMText
@@ -164,7 +164,7 @@ ChuckIntroText1:
 	done
 
 ChuckIntroText2:
-	text "CHUCK: Urggh!"
+	text "DUSTIN: Urggh!"
 	line "…"
 
 	para "Oooarrgh!"
@@ -216,14 +216,14 @@ ChuckExplainBadgeText:
 	done
 
 ChuckExplainTMText:
-	text "That is DYNAMIC-"
-	line "PUNCH."
+	text "That is EARTH-"
+	line "QUAKE."
 
-	para "It doesn't always"
-	line "hit, but when it"
+	para "It's a powerful"
+	line "ground move that's"
 
-	para "does, it causes"
-	line "confusion!"
+	para "sure to shake up"
+	line "any battle!"
 	done
 
 ChuckAfterText:
