@@ -299,11 +299,12 @@ CianwoodCityPokefanMText:
 	done
 
 CianwoodCityLassText:
-	text "CHUCK, the GYM"
-	line "LEADER, spars with"
-
-	para "his fighting #-"
-	line "MON."
+	text "DUSTIN, the GYM"
+	line "LEADER, is always"
+	
+	para "training with his"
+	line "his ground #-"
+	cont "MON."
 	done
 
 CianwoodCityUnusedText:
@@ -390,10 +391,11 @@ CianwoodGymSignText:
 	text "CIANWOOD CITY"
 	line "#MON GYM"
 
-	para "LEADER: CHUCK"
+	para "LEADER: DUSTIN"
 
-	para "His Roaring Fists"
-	line "Do the Talking"
+	para "His #MON will"
+	line "grind you to"
+	cont "dust!"
 	done
 
 CianwoodPharmacySignText:
